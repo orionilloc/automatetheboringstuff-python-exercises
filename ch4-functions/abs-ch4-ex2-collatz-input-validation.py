@@ -6,7 +6,7 @@ def collatz(number):
     print(result, end=' ')
     return result
 
-number = input('Please enter a number:')
+number = input('Please enter a non-zero number:')
 
 while True:
     try:
@@ -21,8 +21,4 @@ while True:
         number = input('Please enter a non-zero number:')
 
 while int(number) != 1:
-    try:
-        number = collatz(number)
-    except ValueError:
-        print('Invalid input provided.')
-        number = input('Please enter a non-zero number:')
+    number = collatz(number)
