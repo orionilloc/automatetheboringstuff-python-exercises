@@ -1,3 +1,5 @@
+# Add try and except statements to the previous project to detect whether the user entered a non-integer string. Normally, the int() function will raise a ValueError error if it is passed a non-integer string, as in int('puppy'). In the except clause, print a message to the user saying they must enter an integer.
+
 def collatz(number):
     if int(number) % 2 == 0: # if even
         result = int(number) // 2
