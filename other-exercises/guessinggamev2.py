@@ -3,11 +3,11 @@ import random
 random_number = random.randint(1,50)
 
 def guessing_sequence(user_guess):
-    if int(user_guess) > int(random_number):
+    if user_guess > random_number:
         user_guess = int(input('User-provided guess is greater than the random number. Pick a lower number: '))
-    elif int(user_guess) < int(random_number):
+    elif user_guess < random_number:
         user_guess = int(input('User-provided guess is lower than the random number. Pick a higher number: '))
-    return int(user_guess)
+    return user_guess
 
 user_guess = int(input('Please enter a random number between 1 and 50: '))
 
