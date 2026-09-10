@@ -21,18 +21,27 @@
 while True:
     print("Enter a temperature and temperature scale to convert from: ")
     print("Example user input: 84 F")
-    print("Example temperature conversion: decideondecimals C")
+    print("Example temperature conversion: 28.88888888888889 C")
     print("")
-    input("Enter a temperature and temperature scale to convert from: ")
+    user_input = input("Enter a temperature and temperature scale to convert from: ")
+    user_temperature_number, user_temperature_scale = user_input.split()
+
+    converted_temperature_number_to_celsius = (int(user_temperature_number) -32) * 5 / 9
+    print(converted_temperature_number_to_celsius)
+    converted_temperature_number_to_fahrenheit = (int(user_temperature_number) * 9 / 5 ) + 32
+    print(converted_temperature_number_to_fahrenheit )
     break
 
 
 #print(f' {user_temperature_number} {user_temperature_scale} converts to {converted_temperature_number} {converted_temperature_scale}. Very cool!')
-
-
-# (32F − 32) × 5/9 = 0°C
+#try:
+#if:
+    #second value is f? then convert to c
+#else:
+#except
 #
 # (0°C × 9/5) + 32 = 32°F
 # include try and except somewhere in here
-
+#
 # store first field as integer - second field as F or C (cant be any other one here)
+# next version would have more input validation or possibly something else more fun
