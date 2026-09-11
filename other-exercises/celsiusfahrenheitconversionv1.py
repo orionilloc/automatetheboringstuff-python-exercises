@@ -9,7 +9,6 @@ while True:
     if user_temperature_scale in ['F', 'f']:
         converted_temperature_number_to_celsius = (int(user_temperature_number) -32) * 5 / 9
         print(f'{converted_temperature_number_to_celsius} C')
-
     elif user_temperature_scale in ['C', 'c']:
         converted_temperature_number_to_fahrenheit = (int(user_temperature_number) * 9 / 5 ) + 32
         print(f'{converted_temperature_number_to_fahrenheit} F')
