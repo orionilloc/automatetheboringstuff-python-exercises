@@ -10,8 +10,10 @@ spam = ', ' .join(spam[:-1]) + ", and " + spam[-1]
 print(spam)
 #def return_comma_space_returned string():
 
-
-
+user_list_input = input() #make a list out of any of the valujes pasted essentially, using white space, maybe do as separate else
+user_list_input = user_list_input.split()
+user_list_input = ', ' .join(user_list_input[:-1]) + ", and " + user_list_input[-1]
+print(user_list_input)
 #try
 # no input or invalid input detected; running default list demonstration
 
