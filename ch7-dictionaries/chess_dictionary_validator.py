@@ -20,8 +20,17 @@ def isValidChessBoard(sample_chessboard):
 
     # need to loop through and add a counter based on any matched value
     for chess_square, chess_piece in sample_chessboard.items():
-        if chess_square[0] in valid_chessboard_columns and chess_square[1] in valid_chessboard_rows
+        if chess_square[0] in valid_chessboard_columns and chess_square[1] in valid_chessboard_rows:
+            # if chess piece valid in valid chess pieces
+            # if valid chess color valid in valid chess colors
+            # if white or blakc piece valid increment by one +=1 # so counting a first portion fo slice to get b or white
+            # if b King or w King increment by one
+            # if b panw or w pawn increment by one
 
+
+            # if count of white or black pieces above 16 not valid
+            # if count of white or black pawns above 8 not valid
+            # if count of white king or black king above 1 not valid
 
 
 # isValidChessBoard(board) -> True/False
