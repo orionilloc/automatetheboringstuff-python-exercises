@@ -13,6 +13,7 @@ def isValidChessBoard(sample_chessboard):
     black_king_count = 0
     black_pawn_count = 0
     # define valid chess piece and setup parameter per exercise requirements
+    valid_chess_piece_total_count = 16
     valid_chessboard_columns = "abcdefgh"
     valid_chessboard_rows = "12345678"
     valid_chess_pieces = ("pawn", "knight", "bishop", "rook", "queen", "king")
@@ -21,7 +22,23 @@ def isValidChessBoard(sample_chessboard):
     # need to loop through and add a counter based on any matched value
     for chess_square, chess_piece in sample_chessboard.items():
         if chess_square[0] in valid_chessboard_columns and chess_square[1] in valid_chessboard_rows:
-            # if chess piece valid in valid chess pieces
+
+
+        if white_pawn_count > 8:
+            return False
+        if black_pawn_count > 8:
+            return False
+        if white_king_count != 1:
+            return False
+        if black_king_count != 1:
+            return False
+        if white_total_piece_count > 16:
+            return False
+        if black_total_piece_count > 16:
+            return False
+
+    return True
+                # Valid chessboard assembled else invalid chessboard assembled
             # if valid chess color valid in valid chess colors
             # if white or blakc piece valid increment by one +=1 # so counting a first portion fo slice to get b or white
             # if b King or w King increment by one
@@ -33,7 +50,7 @@ def isValidChessBoard(sample_chessboard):
             # if count of white king or black king above 1 not valid
 
 
-# isValidChessBoard(board) -> True/False
+# isValidChessBoard(board) -> writes to console as True/False
 
 # input is a dict and no other paramters
 
