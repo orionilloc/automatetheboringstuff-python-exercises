@@ -45,7 +45,7 @@ def isValidChessBoard(sample_chessboard):
         else:
             return False  #
 
-    # after the loop run each check once, now that every square's been counted
+    # check piece counts
     if white_pawn_count > 8:
         return False
     if black_pawn_count > 8:
@@ -60,26 +60,3 @@ def isValidChessBoard(sample_chessboard):
         return False
 
     return True
-                # Valid chessboard assembled else invalid chessboard assembled
-            # if valid chess color valid in valid chess colors
-            # if white or blakc piece valid increment by one +=1 # so counting a first portion fo slice to get b or white
-            # if b King or w King increment by one
-            # if b panw or w pawn increment by one
-
-
-            # if count of white or black pieces above 16 not valid
-            # if count of white or black pawns above 8 not valid
-            # if count of white king or black king above 1 not valid
-
-
-# isValidChessBoard(board) -> writes to console as True/False
-
-# input is a dict and no other paramters
-
-#exactly one 'bK' and exactly one 'wK' total
-#per color: max 16 pieces, of which max 8 pawns
-#every square key is valid: 'a'-'h' + '1'-'8', two chars
-#every piece value is valid format: 'w'/'b' + piece-type letter/name
-#one loop over board.items() can tally counts and check square/piece format as it goes
-#return True only if every rule above holds, otherwise False
-
