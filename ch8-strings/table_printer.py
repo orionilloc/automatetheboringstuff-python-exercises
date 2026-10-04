@@ -11,8 +11,12 @@ tableData = [['red partyhat', 'mithril mace', 'adamant full helm', 'bronze picka
              ['gold bar', 'bones', 'wizard hat', 'rope'],
              ['kebab', 'cake', 'lobster', 'shrimps']]
 
-def printTable():
+def printTable(tableData):
+    colWidths = [0] * len(tableData)
+    for i in range(len(tableData)):
+        for item in tableData[i]:
+            if len(item) > colWidths[i]:
+                colWidths[i] = int(len(item))
+                print(colWidths)
 
-# each column right justified - output
-# ah, but it should paste the first word from each list- so can we grab index values or slice just those?
-# how do we know how to grab a specific list's string?'
+printTable(tableData)
