@@ -17,6 +17,10 @@ def printTable(tableData):
         for item in tableData[i]:
             if len(item) > colWidths[i]:
                 colWidths[i] = int(len(item))
-                print(colWidths)
+    for j in range(len(tableData[0])):
+        for i in range(len(tableData)):
+            print(tableData[i][j].rjust(colWidths[i]), end= ' ')
+        print()
+
 
 printTable(tableData)
