@@ -27,15 +27,19 @@ Lines end in "\\n".
 import sys
 
 
-def count_failures(path):
+def count_failures(file_path):
     """Return {ip: failed_attempt_count}."""
     counts = {}
-    with open(path) as f:
+    with open(file_path) as f:
         for line in f:
-            # TODO
-            pass
+            if "Failed password" in line:
+               words = line.split()
+               ip_address = words[words.index("from") + 1]
+               counts[ip_address] = counts.get(ip_address, 0) + 1
     return counts
 
+def get_count(pair):
+    return pair[1]
 
 def main():
     if len(sys.argv) != 2:
@@ -43,7 +47,9 @@ def main():
         sys.exit(1)
 
     counts = count_failures(sys.argv[1])
-
+    ranked_results = sorted(counts.items(), key=get_count, reverse=True)
+    for ip_address, count in ranked_results:
+        print(f"{ip_address} {count}")
     # TODO: sort and print
 
 
