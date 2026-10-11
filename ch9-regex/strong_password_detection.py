@@ -4,7 +4,7 @@ import re
 import getpass
 
 def strong_password_detection():
-    password_length_regex = re.compile(r'^.{8,}$')
+    password_length_regex = re.compile(r'.{8,}')
     password_lowercase_regex = re.compile(r'[a-z]')
     password_uppercase_regex = re.compile(r'[A-Z]')
     password_digit_regex = re.compile(r'[0-9]')
@@ -18,14 +18,17 @@ def strong_password_detection():
         (password_lowercase_regex, "a lowercase letter"),
         (password_uppercase_regex, "an uppercase letter"),
         (password_digit_regex, "a number of some sort"),
-        (password_special_character_regex, " a special character of some sort")
+        (password_special_character_regex, "a special character of some sort")
+        ]
 
+    missing_password_checks = []
+    for regex, message in password_complexity_checks:
+        if not regex.search(user_password):
+            missing_password_checks.append(message)
 
+    if missing_password_checks:
+        print("Password is weak and missing " + ", ".join(missing_password_checks))
+    else:
+        print("Password is strong enough for the exercise.")
 
-
-# > 8 characters   (so comparing with len)
-# contains one or more uppercase A-Z \
-# contains one or more lowercase a-z \w
-# contains one digit 1-9 \d
-# contains special character?
-
+strong_password_detection()
