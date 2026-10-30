@@ -18,61 +18,49 @@
 #pickup truck was unaffected by these events.
 #The program should print the results to the screen in addition to saving them to a new text file.
 
-import re
 from pathlib import Path
+import re
+import datetime
+
+def retrieve_present_time():
+        now = datetime.datetime.now()
+        string_timestamp = now.strftime("%Y_%m_%d_%H_%M_%S")
+        return string_timestamp
 
 def declare_user_file():
     user_provided_file = input("Provide a sample text file to play around with: ")
     user_provided_file_path = Path(f'./{user_provided_file}')
+    string_timestamp = retrieve_present_time()
+    output_path = Path(f'./{user_provided_file}_modified_{string_timestamp}')
 
     if user_provided_file_path.exists() == True:
-        return user_provided_file_path
+        return user_provided_file_path, output_path
     else:
         print("File does not exist. Start this program and try again.")
         exit()
 
-def file_rw_test_mechanism(user_provided_file_path):
+def file_read_mechanism(user_provided_file_path):
     file_obj = open(f'{user_provided_file_path}', encoding='utf-8')
     content = file_obj.read()
     file_obj.close()
-   # file_obj = open(f'{user_provided_file_path}', 'x', encoding='utf-8')
-   # file_obj.write('Hello, world!')
-   # file_obj.close()
     return content
 
-user_provided_file_path = declare_user_file()
-file_rw_test_mechanism(user_provided_file_path)
+def silly_word_replacement(content):
+    pattern = re.compile(r'\b(ADJECTIVE|NOUN|VERB|ADVERB)\b')
+    match = pattern.search(content)
+    while match:
+        silly_word = input(f"Enter a {match.group().lower()}: ")
+        content = pattern.sub(silly_word, content, count=1)
+        match = pattern.search(content)
+    return content
 
+def file_write_mechanism(output_path, content):
+    file_obj = open(f'{output_path}', 'x', encoding='utf-8')
+    file_obj.write(f'{content}')
+    file_obj.close()
 
-# for list of words in content print this
-#however i declare replacement silly word
-# oh does this become a list; hm maybe
-# but issue now is that i only get a single letter of output here rather than the entire word to be entered; need to catch
-#the entire word
-madlibs_parts_of_speech = ['ADJECTIVE', 'NOUN', 'VERB', 'ADVERB']
-
-#oh wait maybe i should look into regex
-for madlibs_parts_of_speech in content:
-    replacement_silly_word = input(f"Enter a {madlibs_parts_of_speech}: ")
-    #grab word to replace then that becomes the new text
-    # i literally just want a sed function. why cant bash just have better data structures
-# My own fun sentence below:
-
-# The ADJECTIVE wizard stood outside the Grand Exchange and tried to NOUN a rune scimitar for his ADJECTIVE friend. Suddenly, a NOUN appeared in Varrock and began to VERB ADVERB, causing every player nearby to VERB.
-
-# for entirely capitalized words in a string, remap placeholder WORDS to user-provided input; don't think this would be a usecase for positional parameters necessarily. What is the Sed equivalent here but based on location of everything here?
-
-# do we split every word out first? for word in string
-# how do we decide on maximum amount of input or can this hypothetically go forever? is there some sort of buffer limit for how much can be read or can we max based on maybe idk five sentences at max. we can figure that out another time
-
-# if VERB print Enter a verb
-# if NOUN print enter a noun
-# if adjective print enter an adjective
-# if adverb print enter an adverb
-
-# so a function with a single parameter which is essentially just a filepath?)
-
-#new file should have some sort of random entropy maybe once we're done having fun i imagine'
-
-
-
+user_provided_file_path, output_path = declare_user_file()
+content = file_read_mechanism(user_provided_file_path)
+content = silly_word_replacement(content)
+print(content)
+file_write_mechanism(output_path, content)
