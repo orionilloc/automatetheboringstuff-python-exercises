@@ -31,7 +31,8 @@ def declare_user_file():
     user_provided_file = input("Provide a sample text file to play around with: ")
     user_provided_file_path = Path(f'./{user_provided_file}')
     string_timestamp = retrieve_present_time()
-    output_path = Path(f'./{user_provided_file}_modified_{string_timestamp}')
+    p = user_provided_file_path
+    output_path = p.parent / f'{p.stem}_modified_{string_timestamp}{p.suffix}'
 
     if user_provided_file_path.exists() == True:
         return user_provided_file_path, output_path
